@@ -140,8 +140,8 @@
     </build>
 
     <!--============================== ADD For sonatype START ==============================-->
-    <name>sisyphus</name>
-    <description>The retry framework based on spring-retry and guava-retrying.</description>
+    <name>checksum</name>
+    <description>The checksum tool based on java annotation.</description>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
