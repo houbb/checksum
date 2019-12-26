@@ -26,7 +26,7 @@
 
         <!--============================== INTER ==============================-->
         <asm-tool.version>0.0.3</asm-tool.version>
-        <heaven.version>0.1.64-SNAPSHOT</heaven.version>
+        <heaven.version>0.1.64</heaven.version>
 
         <!--============================== OTHER ==============================-->
         <junit.version>4.12</junit.version>

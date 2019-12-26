@@ -126,5 +126,13 @@ Assert.assertEquals(user.buildChecksum(), checksum);
 
 ## 性能
 
-本次进行 100w 次测试验证，详情见 [BenchmarkTest.java](BenchmarkTest)
+详情见 [BenchmarkTest.java](https://github.com/houbb/checksum/blob/release_0.0.2/src/test/java/com/github/houbb/checksum/benchmark/BenchmarkTest.java)
+
+![benchmark](https://github.com/houbb/checksum/blob/release_0.0.2/compare.png?raw=true)
+
+本次进行 100w 次测试验证，耗时如下
+
+手动处理耗时：2505ms
+
+注解处理耗时：2927ms
 
