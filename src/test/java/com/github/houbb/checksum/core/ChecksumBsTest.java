@@ -12,33 +12,22 @@ public class ChecksumBsTest {
 
     @Test
     public void checksumTest() {
-        User user = buildUser();
+        User user = User.buildUser();
         final String checksum = ChecksumBs
                 .newInstance(user)
                 .checksum();
 
-        Assert.assertEquals("8D62F2BC49A9AB51280C8F42A483ED54", checksum);
+        Assert.assertEquals(user.buildChecksum(), checksum);
+        System.out.println(checksum);
     }
 
     @Test
     public void fillTest() {
-        User user = buildUser();
+        User user = User.buildUser();
         ChecksumBs.newInstance(user).fill();
 
-        Assert.assertEquals("User{name='ryo', password='1234', address='china', checksum='8D62F2BC49A9AB51280C8F42A483ED54'}",
+        Assert.assertEquals("User{name='ryo', password='1234', address='china', checksum='5A2A21025E5232FBFD8BFB2A08DE2A01'}",
                 user.toString());
-    }
-
-    /**
-     * 构建示例对象
-     * @return 构建示例对象
-     */
-    private User buildUser() {
-        User user = new User();
-        user.name("ryo")
-                .password("1234")
-                .address("china");
-        return user;
     }
 
 }

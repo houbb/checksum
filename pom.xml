@@ -6,7 +6,7 @@
 
     <groupId>com.github.houbb</groupId>
     <artifactId>checksum</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 
     <properties>
         <!--============================== All Plugins START ==============================-->
@@ -25,7 +25,8 @@
         <project.compiler.level>1.7</project.compiler.level>
 
         <!--============================== INTER ==============================-->
-        <heaven.version>0.1.5-SNAPSHOT</heaven.version>
+        <asm-tool.version>0.0.3</asm-tool.version>
+        <heaven.version>0.1.64</heaven.version>
 
         <!--============================== OTHER ==============================-->
         <junit.version>4.12</junit.version>
@@ -36,6 +37,18 @@
             <!--============================== SELF ==============================-->
 
             <!--============================== INTER ==============================-->
+            <dependency>
+                <groupId>com.github.houbb</groupId>
+                <artifactId>asm-tool</artifactId>
+                <version>${asm-tool.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.github.houbb</groupId>
+                        <artifactId>heaven</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <dependency>
                 <groupId>com.github.houbb</groupId>
                 <artifactId>heaven</artifactId>
@@ -57,6 +70,11 @@
         <!--============================== SELF ==============================-->
 
         <!--============================== INTER ==============================-->
+        <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>asm-tool</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.github.houbb</groupId>
             <artifactId>heaven</artifactId>
@@ -140,8 +158,8 @@
     </build>
 
     <!--============================== ADD For sonatype START ==============================-->
-    <name>sisyphus</name>
-    <description>The retry framework based on spring-retry and guava-retrying.</description>
+    <name>checksum</name>
+    <description>The checksum tool based on java annotation.</description>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>

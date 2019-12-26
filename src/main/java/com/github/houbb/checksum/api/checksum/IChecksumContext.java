@@ -16,25 +16,22 @@ public interface IChecksumContext {
     /**
      * 目标对象
      * @return 目标对象
+     * @since 0.0.1
      */
     Object target();
 
     /**
      * 排序实现
      * @return 排序实现
+     * @since 0.0.1
      */
     ISort sort();
 
     /**
      * 加密实现
      * @return 加密实现
+     * @since 0.0.1
      */
     ISecret secret();
-
-    /**
-     * 缓存实现
-     * @return 缓存实现
-     */
-    ICache<Class, List<IField>> cache();
 
 }
