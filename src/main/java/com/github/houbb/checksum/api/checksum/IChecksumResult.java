@@ -16,16 +16,4 @@ public interface IChecksumResult {
      */
     String checksum();
 
-    /**
-     * 目标对象
-     * @return 目标对象
-     */
-    Object target();
-
-    /**
-     * 字段信息列表
-     * @return 字段信息列表
-     */
-    List<IField> fields();
-
 }

@@ -2,6 +2,7 @@ package com.github.houbb.checksum.model;
 
 import com.github.houbb.checksum.annotation.CheckField;
 import com.github.houbb.checksum.annotation.Checksum;
+import com.github.houbb.heaven.util.secrect.Md5Util;
 
 /**
  * @author binbin.hou
@@ -79,4 +80,18 @@ public class User {
 
         return user;
     }
+
+    /**
+     * 手动构建验签结果
+     * @return 结果
+     * @since 0.0.2
+     */
+    public String buildChecksum() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(name);
+        stringBuilder.append(password);
+
+        return Md5Util.md5(stringBuilder.toString());
+    }
+
 }

@@ -17,7 +17,8 @@ public class ChecksumBsTest {
                 .newInstance(user)
                 .checksum();
 
-        Assert.assertEquals("8D62F2BC49A9AB51280C8F42A483ED54", checksum);
+        Assert.assertEquals(user.buildChecksum(), checksum);
+        System.out.println(checksum);
     }
 
     @Test
@@ -25,7 +26,7 @@ public class ChecksumBsTest {
         User user = User.buildUser();
         ChecksumBs.newInstance(user).fill();
 
-        Assert.assertEquals("User{name='ryo', password='1234', address='china', checksum='8D62F2BC49A9AB51280C8F42A483ED54'}",
+        Assert.assertEquals("User{name='ryo', password='1234', address='china', checksum='5A2A21025E5232FBFD8BFB2A08DE2A01'}",
                 user.toString());
     }
 

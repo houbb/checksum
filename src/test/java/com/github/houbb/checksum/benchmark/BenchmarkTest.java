@@ -12,13 +12,11 @@ import org.junit.Test;
  */
 public class BenchmarkTest {
 
-    // Cost Mills: 3547
-
     /**
      * 反射设置
      * @since 0.0.2
-     * Cost Mills: 3350
-     * TODO: 添加 asm 实现，可以参数指定。
+     * v0.0.1 Cost Mills: 3350
+     * v0.0.2 Cost Mills: 2927
      */
     @Test
     public void fillTest() {
@@ -31,12 +29,10 @@ public class BenchmarkTest {
         System.out.println("Cost Mills: " + (endMills - startMills));
     }
 
-    // Cost Mills: 3547
-
     /**
      * 手动设置
      *
-     * Cost Mills: 2371
+     * Cost Mills: 2505
      * @since 0.0.2
      */
     @Test
@@ -56,14 +52,7 @@ public class BenchmarkTest {
      * @since 0.0.2
      */
     private void setCheckSum(User user) {
-        String name = user.getName();
-        String password = user.getPassword();
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(name);
-        stringBuilder.append(password);
-
-        String checksum =  Md5Util.md5(stringBuilder.toString());
+        String checksum =  user.buildChecksum();
         user.setChecksum(checksum);
     }
 
