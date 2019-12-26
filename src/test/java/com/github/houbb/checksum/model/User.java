@@ -24,36 +24,36 @@ public class User {
         return name;
     }
 
-    public User name(String name) {
-        this.name = name;
-        return this;
+    public String getName() {
+        return name;
     }
 
-    public String password() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
         return password;
     }
 
-    public User password(String password) {
+    public void setPassword(String password) {
         this.password = password;
-        return this;
     }
 
-    public String address() {
+    public String getAddress() {
         return address;
     }
 
-    public User address(String address) {
+    public void setAddress(String address) {
         this.address = address;
-        return this;
     }
 
-    public String checksum() {
+    public String getChecksum() {
         return checksum;
     }
 
-    public User checksum(String checksum) {
+    public void setChecksum(String checksum) {
         this.checksum = checksum;
-        return this;
     }
 
     @Override
@@ -66,4 +66,17 @@ public class User {
                 '}';
     }
 
+
+    /**
+     * 构建示例对象
+     * @return 构建示例对象
+     */
+    public static User buildUser() {
+        User user = new User();
+        user.setName("ryo");
+        user.setPassword("1234");
+        user.setAddress("china");
+
+        return user;
+    }
 }

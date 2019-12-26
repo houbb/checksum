@@ -12,7 +12,7 @@ public class ChecksumBsTest {
 
     @Test
     public void checksumTest() {
-        User user = buildUser();
+        User user = User.buildUser();
         final String checksum = ChecksumBs
                 .newInstance(user)
                 .checksum();
@@ -22,23 +22,11 @@ public class ChecksumBsTest {
 
     @Test
     public void fillTest() {
-        User user = buildUser();
+        User user = User.buildUser();
         ChecksumBs.newInstance(user).fill();
 
         Assert.assertEquals("User{name='ryo', password='1234', address='china', checksum='8D62F2BC49A9AB51280C8F42A483ED54'}",
                 user.toString());
-    }
-
-    /**
-     * 构建示例对象
-     * @return 构建示例对象
-     */
-    private User buildUser() {
-        User user = new User();
-        user.name("ryo")
-                .password("1234")
-                .address("china");
-        return user;
     }
 
 }
