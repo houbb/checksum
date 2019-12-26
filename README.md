@@ -3,8 +3,8 @@
 基于 java 注解生成加签验签 checksum。
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.houbb/checksum/badge.svg)](http://mvnrepository.com/artifact/com.github.houbb/checksum)
-[![Build Status](https://www.travis-ci.org/houbb/checksum.svg?branch=master)](https://www.travis-ci.org/houbb/checksum?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/houbb/checksum/badge.svg?branch=master)](https://coveralls.io/github/houbb/checksum?branch=master)
+
+[![](https://img.shields.io/badge/license-Apache2-FF0080.svg)](https://github.com/houbb/checksum/blob/master/LICENSE.txt)
 
 ## 创作缘由
 
@@ -130,9 +130,8 @@ Assert.assertEquals(user.buildChecksum(), checksum);
 
 ![benchmark](https://github.com/houbb/checksum/blob/release_0.0.2/compare.png?raw=true)
 
-本次进行 100w 次测试验证，耗时如下
+本次进行 100w 次测试验证，耗时如下。
 
 手动处理耗时：2505ms
 
 注解处理耗时：2927ms
-
