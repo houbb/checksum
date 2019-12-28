@@ -44,7 +44,7 @@ maven 3.x+
 <plugin>
     <groupId>com.github.houbb</groupId>
     <artifactId>checksum</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </plugin>
 ```
 
