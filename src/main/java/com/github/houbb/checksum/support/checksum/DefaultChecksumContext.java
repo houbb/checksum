@@ -2,7 +2,7 @@ package com.github.houbb.checksum.support.checksum;
 
 import com.github.houbb.checksum.api.checksum.IChecksumContext;
 import com.github.houbb.checksum.api.secret.ISecret;
-import com.github.houbb.checksum.api.sort.ISort;
+import com.github.houbb.converter.api.sorter.IMyFieldSort;
 import com.github.houbb.heaven.annotation.NotThreadSafe;
 
 /**
@@ -25,8 +25,9 @@ public class DefaultChecksumContext implements IChecksumContext {
 
     /**
      * 排序策略
+     * @since 0.0.3
      */
-    private ISort sort;
+    private IMyFieldSort sort;
 
     /**
      * 创建实例
@@ -52,11 +53,11 @@ public class DefaultChecksumContext implements IChecksumContext {
     }
 
     @Override
-    public ISort sort() {
+    public IMyFieldSort sort() {
         return sort;
     }
 
-    public DefaultChecksumContext sort(ISort sort) {
+    public DefaultChecksumContext sort(IMyFieldSort sort) {
         this.sort = sort;
         return this;
     }

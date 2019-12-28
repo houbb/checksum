@@ -4,12 +4,14 @@ import com.github.houbb.checksum.core.ChecksumBs;
 import com.github.houbb.checksum.model.User;
 import com.github.houbb.heaven.util.secrect.Md5Util;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * @author binbin.hou
  * @since 0.0.2
  */
+@Ignore
 public class BenchmarkTest {
 
     /**

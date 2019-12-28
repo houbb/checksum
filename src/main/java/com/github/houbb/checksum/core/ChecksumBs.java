@@ -4,13 +4,14 @@ import com.github.houbb.checksum.annotation.Checksum;
 import com.github.houbb.checksum.api.checksum.IChecksum;
 import com.github.houbb.checksum.api.checksum.IChecksumContext;
 import com.github.houbb.checksum.api.secret.ISecret;
-import com.github.houbb.checksum.api.sort.ISort;
 import com.github.houbb.checksum.support.checksum.DefaultChecksum;
 import com.github.houbb.checksum.support.checksum.DefaultChecksumContext;
 import com.github.houbb.checksum.support.secret.Secrets;
-import com.github.houbb.checksum.support.sort.Sorts;
+import com.github.houbb.converter.api.sorter.IMyFieldSort;
+import com.github.houbb.converter.core.sorter.myfield.NameAscMyFieldSort;
+import com.github.houbb.converter.core.sorter.myfield.NoMyFieldSort;
 import com.github.houbb.heaven.annotation.NotThreadSafe;
-import com.github.houbb.heaven.support.instance.impl.InstanceFactory;
+import com.github.houbb.heaven.support.instance.impl.Instances;
 import com.github.houbb.heaven.util.common.ArgUtil;
 
 /**
@@ -35,17 +36,22 @@ public final class ChecksumBs {
 
     /**
      * 排序的实现
+     * 默认不进行任何排序。
      * @since 0.0.1
      */
-    private ISort sort = Sorts.nameAscSort();
+    private IMyFieldSort sort = Instances.singleton(NoMyFieldSort.class);
 
     /**
      * 加签的处理类
      * 1. 暂时不开放这个类
      * @since 0.0.1
      */
-    private IChecksum checkSum = InstanceFactory.getInstance().singleton(DefaultChecksum.class);
+    private IChecksum checkSum = Instances.singleton(DefaultChecksum.class);
 
+    /**
+     * 私有化构造器
+     * @since 0.0.1
+     */
     private ChecksumBs(){}
 
     /**
@@ -72,19 +78,6 @@ public final class ChecksumBs {
         ArgUtil.notNull(secret, "secret");
 
         this.secret = secret;
-        return this;
-    }
-
-    /**
-     * 指定加签实现
-     * @param sort 排序策略
-     * @return this
-     * @since 0.0.1
-     */
-    private ChecksumBs sort(ISort sort) {
-        ArgUtil.notNull(sort, "sort");
-
-        this.sort = sort;
         return this;
     }
 

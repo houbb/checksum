@@ -1,11 +1,7 @@
 package com.github.houbb.checksum.api.checksum;
 
 import com.github.houbb.checksum.api.secret.ISecret;
-import com.github.houbb.checksum.api.sort.ISort;
-import com.github.houbb.heaven.reflect.api.IField;
-import com.github.houbb.heaven.support.cache.ICache;
-
-import java.util.List;
+import com.github.houbb.converter.api.sorter.IMyFieldSort;
 
 /**
  * @author binbin.hou
@@ -25,7 +21,7 @@ public interface IChecksumContext {
      * @return 排序实现
      * @since 0.0.1
      */
-    ISort sort();
+    IMyFieldSort sort();
 
     /**
      * 加密实现

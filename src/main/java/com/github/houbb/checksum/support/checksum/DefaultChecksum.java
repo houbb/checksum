@@ -5,10 +5,10 @@ import com.github.houbb.checksum.api.checksum.IChecksumContext;
 import com.github.houbb.checksum.api.checksum.IChecksumResult;
 import com.github.houbb.checksum.api.secret.ISecret;
 import com.github.houbb.checksum.api.secret.ISecretContext;
-import com.github.houbb.checksum.api.sort.ISort;
 import com.github.houbb.checksum.support.cache.CheckFieldListCache;
 import com.github.houbb.checksum.support.cache.ChecksumFieldCache;
 import com.github.houbb.checksum.support.secret.DefaultSecretContext;
+import com.github.houbb.converter.api.sorter.IMyFieldSort;
 import com.github.houbb.heaven.annotation.ThreadSafe;
 import com.github.houbb.heaven.reflect.api.IField;
 import com.github.houbb.heaven.support.instance.impl.Instances;
@@ -32,7 +32,7 @@ public class DefaultChecksum implements IChecksum {
     public IChecksumResult checksum(IChecksumContext context) {
         final Object target = context.target();
         final ISecret secret = context.secret();
-        final ISort sort = context.sort();
+        final IMyFieldSort sort = context.sort();
         final Class clazz = target.getClass();
 
         // 执行一次过滤，只有 @CheckField 对应的字段才会被传入
@@ -41,7 +41,7 @@ public class DefaultChecksum implements IChecksum {
 
         // 执行排序
         if (CollectionUtil.isNotEmpty(checkFieldList)) {
-            sort.sort(checkFieldList);
+            checkFieldList = sort.sort(checkFieldList);
         }
 
         // 执行值初始化

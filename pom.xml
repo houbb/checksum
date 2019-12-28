@@ -6,7 +6,7 @@
 
     <groupId>com.github.houbb</groupId>
     <artifactId>checksum</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
 
     <properties>
         <!--============================== All Plugins START ==============================-->
@@ -25,8 +25,8 @@
         <project.compiler.level>1.7</project.compiler.level>
 
         <!--============================== INTER ==============================-->
-        <asm-tool.version>0.0.3</asm-tool.version>
         <heaven.version>0.1.64</heaven.version>
+        <converter.version>0.0.1</converter.version>
 
         <!--============================== OTHER ==============================-->
         <junit.version>4.12</junit.version>
@@ -39,20 +39,14 @@
             <!--============================== INTER ==============================-->
             <dependency>
                 <groupId>com.github.houbb</groupId>
-                <artifactId>asm-tool</artifactId>
-                <version>${asm-tool.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.github.houbb</groupId>
-                        <artifactId>heaven</artifactId>
-                    </exclusion>
-                </exclusions>
+                <artifactId>heaven</artifactId>
+                <version>${heaven.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.houbb</groupId>
-                <artifactId>heaven</artifactId>
-                <version>${heaven.version}</version>
+                <artifactId>converter</artifactId>
+                <version>${converter.version}</version>
             </dependency>
 
             <!--============================== OTHER ==============================-->
@@ -72,12 +66,12 @@
         <!--============================== INTER ==============================-->
         <dependency>
             <groupId>com.github.houbb</groupId>
-            <artifactId>asm-tool</artifactId>
+            <artifactId>heaven</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.github.houbb</groupId>
-            <artifactId>heaven</artifactId>
+            <artifactId>converter</artifactId>
         </dependency>
 
         <!--============================== OTHER ==============================-->
