@@ -1,9 +1,7 @@
 package com.github.houbb.checksum.benchmark;
 
-import com.github.houbb.checksum.core.ChecksumBs;
+import com.github.houbb.checksum.bs.ChecksumBs;
 import com.github.houbb.checksum.model.User;
-import com.github.houbb.heaven.util.secrect.Md5Util;
-import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -25,7 +23,7 @@ public class BenchmarkTest {
         long startMills = System.currentTimeMillis();
         for(int i = 0; i < 1000000; i++) {
             User user = User.buildUser();
-            ChecksumBs.newInstance(user).fill();
+            ChecksumBs.newInstance().target(user).fill();
         }
         long endMills = System.currentTimeMillis();
         System.out.println("Cost Mills: " + (endMills - startMills));

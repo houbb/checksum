@@ -6,7 +6,7 @@
 
     <groupId>com.github.houbb</groupId>
     <artifactId>checksum</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.4</version>
 
     <properties>
         <!--============================== All Plugins START ==============================-->
@@ -25,11 +25,13 @@
         <project.compiler.level>1.7</project.compiler.level>
 
         <!--============================== INTER ==============================-->
-        <heaven.version>0.1.64</heaven.version>
         <converter.version>0.0.1</converter.version>
+        <heaven.version>0.1.131</heaven.version>
+        <sort.version>0.0.9</sort.version>
+        <hash.version>0.0.3</hash.version>
 
         <!--============================== OTHER ==============================-->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13</junit.version>
     </properties>
 
     <dependencyManagement>
@@ -45,8 +47,26 @@
 
             <dependency>
                 <groupId>com.github.houbb</groupId>
-                <artifactId>converter</artifactId>
-                <version>${converter.version}</version>
+                <artifactId>hash</artifactId>
+                <version>${hash.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.github.houbb</groupId>
+                        <artifactId>heaven</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.houbb</groupId>
+                <artifactId>sort-core</artifactId>
+                <version>${sort.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.github.houbb</groupId>
+                        <artifactId>heaven</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!--============================== OTHER ==============================-->
@@ -71,7 +91,12 @@
 
         <dependency>
             <groupId>com.github.houbb</groupId>
-            <artifactId>converter</artifactId>
+            <artifactId>hash</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>sort-core</artifactId>
         </dependency>
 
         <!--============================== OTHER ==============================-->

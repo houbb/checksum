@@ -1,4 +1,4 @@
-package com.github.houbb.checksum.core;
+package com.github.houbb.checksum.bs;
 
 import com.github.houbb.checksum.model.User;
 import org.junit.Assert;
@@ -14,8 +14,9 @@ public class ChecksumBsTest {
     public void checksumTest() {
         User user = User.buildUser();
         final String checksum = ChecksumBs
-                .newInstance(user)
-                .checksum();
+                .newInstance()
+                .target(user)
+                .checkValue();
 
         Assert.assertEquals(user.buildChecksum(), checksum);
         System.out.println(checksum);
@@ -24,7 +25,7 @@ public class ChecksumBsTest {
     @Test
     public void fillTest() {
         User user = User.buildUser();
-        ChecksumBs.newInstance(user).fill();
+        ChecksumBs.newInstance().target(user).fill();
 
         Assert.assertEquals("User{name='ryo', password='1234', address='china', checksum='5A2A21025E5232FBFD8BFB2A08DE2A01'}",
                 user.toString());

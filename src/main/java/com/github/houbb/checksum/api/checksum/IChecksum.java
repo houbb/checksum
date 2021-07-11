@@ -12,12 +12,12 @@ public interface IChecksum {
      * @param context 上下文
      * @return 结果
      */
-    IChecksumResult checksum(final IChecksumContext context);
+    IChecksumResult checkValue(final IChecksumContext context);
 
     /**
      * 根据上下文生产加签名结果并将结果填充
      * @param context 上下文
      */
-    void fill(final IChecksumContext context);
+    void fillCheckValue(final IChecksumContext context);
 
 }

@@ -1,7 +1,7 @@
 package com.github.houbb.checksum.api.checksum;
 
-import com.github.houbb.checksum.api.secret.ISecret;
-import com.github.houbb.converter.api.sorter.IMyFieldSort;
+import com.github.houbb.hash.api.IHash;
+import com.github.houbb.sort.api.ISort;
 
 /**
  * @author binbin.hou
@@ -21,13 +21,34 @@ public interface IChecksumContext {
      * @return 排序实现
      * @since 0.0.1
      */
-    IMyFieldSort sort();
+    ISort sort();
 
     /**
-     * 加密实现
-     * @return 加密实现
-     * @since 0.0.1
+     * @since 0.0.4
+     * @return hash
+     * hash 策略
      */
-    ISecret secret();
+    IHash hash();
+
+    /**
+     * 加密次数
+     * @return 次数
+     * @since 0.0.4
+     */
+    int times();
+
+    /**
+     * 盐值
+     * @return 盐值
+     * @since 0.0.4
+     */
+    byte[] salt();
+
+    /**
+     * 编码
+     * @return 编码
+     * @since 0.0.4
+     */
+    String charset();
 
 }

@@ -15,5 +15,5 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Checksum {
+public @interface CheckValue {
 }

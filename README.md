@@ -22,7 +22,7 @@
 
 - 基于注解的 checksum 加签验签，灵活方便
 
-- Fluent 流式语法
+- fluent 流式语法
 
 - 支持用户策略自定义
 
@@ -48,7 +48,7 @@ maven 3.x+
 <plugin>
     <groupId>com.github.houbb</groupId>
     <artifactId>checksum</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 </plugin>
 ```
 
@@ -79,46 +79,31 @@ public class User {
 
 `@CheckField` 表示参与加签的字段信息
 
-`@Checksum` 表示加签结果存放的字段，该字段类型需要为 String 类型。
+`@CheckValue` 表示加签结果存放的字段，该字段类型需要为 String 类型。
 
 后期将会添加一个 String 与不同类型的转换实现，拓展应用场景。
 
-## 调用测试
+## 获取签名 
 
 ```java
 User user = User.buildUser();
-final String checksum = ChecksumBs
-                .newInstance(user)
-                .checksum();
 
-Assert.assertEquals(user.buildChecksum(), checksum);
+final String checksum = ChecksumHelper.checkValue(user);
 ```
 
 该方法会把 User 对象中指定 `@CheckField` 的字段全部进行处理，
+
 通过指定排序后进行拼接，然后结合指定加密策略构建最后的验签结果。
 
-# ChecksumBs 引导类
+## 填充签名
 
-用来创建加签的相关配置及实现。
+```java
+User user = User.buildUser();
 
-## 构建引导类
+ChecksumHelper.fill(user);
+```
 
-`ChecksumBs.newInstance(object)` 可以新建一个引导类实例。
-
-## 调用核心方法
-
-| 方法 | 返回值 | 备注 |
-|:--|:--|:--|
-| checksum() | String | 返回加签的结果 |
-| fill() |  无 | 将上面 checksum 的结果设置到 `@Checksum` 标识的字段中 |
-
-## 自定义策略
-
-- 字段排序策略
-
-- 加密策略
-
-这两个策略暂时未作开放，后期将逐步开放功能。
+可以把对应的 checkValue 值默认填充到 `@CheckValue` 指定的字段上。
 
 # 性能
 

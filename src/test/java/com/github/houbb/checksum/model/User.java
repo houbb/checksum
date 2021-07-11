@@ -1,7 +1,7 @@
 package com.github.houbb.checksum.model;
 
 import com.github.houbb.checksum.annotation.CheckField;
-import com.github.houbb.checksum.annotation.Checksum;
+import com.github.houbb.checksum.annotation.CheckValue;
 import com.github.houbb.heaven.util.secrect.Md5Util;
 
 /**
@@ -18,7 +18,7 @@ public class User {
 
     private String address;
 
-    @Checksum
+    @CheckValue
     private String checksum;
 
     public String name() {
