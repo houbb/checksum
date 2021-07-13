@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * 参与验签的字段
  *
  * 1. 默认对字段进行验签
- * 2. 如果指定 @CheckField && required=false，则不作处理。
+ * 2. 如果指定 @CheckField 且 required=false，则不作处理。
  *
  * @author binbin.hou
  * @since 0.0.1

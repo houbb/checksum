@@ -89,6 +89,7 @@ public class DefaultChecksum implements IChecksum {
      * @param target 待加签的对象
      * @param sort 排序
      * @since 0.0.4
+     * @return 排序後的字段列表
      */
     protected List<IField> sortFieldList(final ICheckFieldListCache checkFieldListCache,
                                          final Object target, final ISort sort) {
