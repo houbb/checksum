@@ -3,6 +3,10 @@ package com.github.houbb.checksum.bs;
 import com.github.houbb.checksum.annotation.CheckValue;
 import com.github.houbb.checksum.api.checksum.IChecksum;
 import com.github.houbb.checksum.api.checksum.IChecksumContext;
+import com.github.houbb.checksum.support.cache.CheckFieldListCache;
+import com.github.houbb.checksum.support.cache.CheckValueCache;
+import com.github.houbb.checksum.support.cache.ICheckFieldListCache;
+import com.github.houbb.checksum.support.cache.ICheckValueCache;
 import com.github.houbb.checksum.support.checksum.DefaultChecksum;
 import com.github.houbb.checksum.support.checksum.DefaultChecksumContext;
 import com.github.houbb.hash.api.IHash;
@@ -12,7 +16,6 @@ import com.github.houbb.heaven.support.instance.impl.Instances;
 import com.github.houbb.heaven.util.common.ArgUtil;
 import com.github.houbb.sort.api.ISort;
 import com.github.houbb.sort.core.api.Sorts;
-import sun.nio.cs.StandardCharsets;
 
 /**
  * 验签引导类
@@ -63,6 +66,18 @@ public final class ChecksumBs {
      * @since 0.0.4
      */
     private String charset = CharsetConst.UTF8;
+
+    /**
+     * 签名字段缓存
+     * @since 0.0.5
+     */
+    private ICheckValueCache checkValueCache = new CheckValueCache();
+
+    /**
+     * 待加签的字段列表缓存
+     * @since 0.0.5
+     */
+    private ICheckFieldListCache checkFieldListCache = new CheckFieldListCache();
 
     /**
      * 私有化构造器
@@ -118,6 +133,20 @@ public final class ChecksumBs {
         return this;
     }
 
+    public ChecksumBs checkValueCache(ICheckValueCache checkValueCache) {
+        ArgUtil.notNull(checkValueCache, "checkValueCache");
+
+        this.checkValueCache = checkValueCache;
+        return this;
+    }
+
+    public ChecksumBs checkFieldListCache(ICheckFieldListCache checkFieldListCache) {
+        ArgUtil.notNull(checkFieldListCache, "checkFieldListCache");
+
+        this.checkFieldListCache = checkFieldListCache;
+        return this;
+    }
+
     /**
      * 获取加签结果
      * 1. 不会将这个值放在对象中
@@ -163,7 +192,9 @@ public final class ChecksumBs {
                 .hash(hash)
                 .sort(sort)
                 .salt(salt)
-                .charset(charset);
+                .charset(charset)
+                .checkFieldListCache(checkFieldListCache)
+                .checkValueCache(checkValueCache);
     }
 
 }

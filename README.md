@@ -3,8 +3,9 @@
 基于 java 注解生成加签验签 checksum。
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.houbb/checksum/badge.svg)](http://mvnrepository.com/artifact/com.github.houbb/checksum)
-
 [![](https://img.shields.io/badge/license-Apache2-FF0080.svg)](https://github.com/houbb/checksum/blob/master/LICENSE.txt)
+[![](https://img.shields.io/badge/license-Apache2-FF0080.svg)](https://github.com/houbb/secret/blob/master/LICENSE.txt)
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/houbb/secret)
 
 ## 创作缘由
 
@@ -48,7 +49,7 @@ maven 3.x+
 <plugin>
     <groupId>com.github.houbb</groupId>
     <artifactId>checksum</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
 </plugin>
 ```
 
@@ -62,12 +63,12 @@ public class User {
     @CheckField
     private String name;
 
-    @CheckField
     private String password;
 
+    @CheckField(required = false)
     private String address;
 
-    @Checksum
+    @CheckValue
     private String checksum;
 
     //Getter & Setter
@@ -77,7 +78,7 @@ public class User {
 
 ## 核心注解
 
-`@CheckField` 表示参与加签的字段信息
+`@CheckField` 表示参与加签的字段信息，默认都是参与加签的。指定 `required=false` 跳过加签。
 
 `@CheckValue` 表示加签结果存放的字段，该字段类型需要为 String 类型。
 
@@ -124,3 +125,8 @@ ChecksumHelper.fill(user);
 手动处理耗时：2505ms
 
 注解处理耗时：2927ms
+
+# Road-MAP
+
+- [ ] 新增拦截器
+

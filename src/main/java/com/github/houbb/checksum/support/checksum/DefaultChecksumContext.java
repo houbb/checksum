@@ -1,6 +1,8 @@
 package com.github.houbb.checksum.support.checksum;
 
 import com.github.houbb.checksum.api.checksum.IChecksumContext;
+import com.github.houbb.checksum.support.cache.ICheckFieldListCache;
+import com.github.houbb.checksum.support.cache.ICheckValueCache;
 import com.github.houbb.hash.api.IHash;
 import com.github.houbb.heaven.annotation.NotThreadSafe;
 import com.github.houbb.sort.api.ISort;
@@ -50,6 +52,18 @@ public class DefaultChecksumContext implements IChecksumContext {
     private String charset;
 
     /**
+     * 签名字段缓存
+     * @since 0.0.5
+     */
+    private ICheckValueCache checkValueCache;
+
+    /**
+     * 待加签的字段列表缓存
+     * @since 0.0.5
+     */
+    private ICheckFieldListCache checkFieldListCache;
+
+    /**
      * 创建实例
      * @return 实例
      */
@@ -77,6 +91,7 @@ public class DefaultChecksumContext implements IChecksumContext {
         return this;
     }
 
+    @Override
     public IHash hash() {
         return hash;
     }
@@ -86,6 +101,7 @@ public class DefaultChecksumContext implements IChecksumContext {
         return this;
     }
 
+    @Override
     public int times() {
         return times;
     }
@@ -95,6 +111,7 @@ public class DefaultChecksumContext implements IChecksumContext {
         return this;
     }
 
+    @Override
     public byte[] salt() {
         return salt;
     }
@@ -111,6 +128,26 @@ public class DefaultChecksumContext implements IChecksumContext {
 
     public DefaultChecksumContext charset(String charset) {
         this.charset = charset;
+        return this;
+    }
+
+    @Override
+    public ICheckValueCache checkValueCache() {
+        return checkValueCache;
+    }
+
+    public DefaultChecksumContext checkValueCache(ICheckValueCache checkValueCache) {
+        this.checkValueCache = checkValueCache;
+        return this;
+    }
+
+    @Override
+    public ICheckFieldListCache checkFieldListCache() {
+        return checkFieldListCache;
+    }
+
+    public DefaultChecksumContext checkFieldListCache(ICheckFieldListCache checkFieldListCache) {
+        this.checkFieldListCache = checkFieldListCache;
         return this;
     }
 }

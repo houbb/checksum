@@ -1,5 +1,7 @@
 package com.github.houbb.checksum.api.checksum;
 
+import com.github.houbb.checksum.support.cache.ICheckFieldListCache;
+import com.github.houbb.checksum.support.cache.ICheckValueCache;
 import com.github.houbb.hash.api.IHash;
 import com.github.houbb.sort.api.ISort;
 
@@ -24,9 +26,10 @@ public interface IChecksumContext {
     ISort sort();
 
     /**
+     * hash 策略
+     *
      * @since 0.0.4
      * @return hash
-     * hash 策略
      */
     IHash hash();
 
@@ -50,5 +53,19 @@ public interface IChecksumContext {
      * @since 0.0.4
      */
     String charset();
+
+    /**
+     * 签名字段缓存
+     * @since 0.0.5
+     * @return 签名缓存
+     */
+    ICheckValueCache checkValueCache();
+
+    /**
+     * 待加签的字段列表缓存
+     * @since 0.0.5
+     * @return 加签的字段缓存
+     */
+    ICheckFieldListCache checkFieldListCache();
 
 }

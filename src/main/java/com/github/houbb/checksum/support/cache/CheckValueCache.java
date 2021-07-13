@@ -13,10 +13,11 @@ import java.util.List;
  * @since 0.0.2
  * @see CheckValue 验签字段
  */
-public class ChecksumFieldCache extends AbstractCache<Class, Field> {
+public class CheckValueCache extends AbstractCache<Class<?>, Field>
+    implements ICheckValueCache {
 
     @Override
-    protected Field buildValue(Class aClass) {
+    protected Field buildValue(Class<?> aClass) {
         List<Field> fieldList = ClassFieldListCache.getInstance().get(aClass);
 
         for(Field field : fieldList) {

@@ -13,9 +13,9 @@ public class User {
     @CheckField
     private String name;
 
-    @CheckField
     private String password;
 
+    @CheckField(required = false)
     private String address;
 
     @CheckValue
