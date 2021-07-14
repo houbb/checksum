@@ -15,7 +15,7 @@ public class ChecksumHelperTest {
         User user = User.buildUser();
         final String checksum = ChecksumHelper.checkValue(user);
 
-        Assert.assertEquals(user.buildChecksum(), checksum);
+        Assert.assertEquals(user.buildCheckValue(), checksum);
         System.out.println(checksum);
     }
 

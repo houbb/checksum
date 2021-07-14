@@ -56,4 +56,28 @@ public final class ChecksumHelper {
         fill(target, null);
     }
 
+    /**
+     * 是否合法
+     * @param target 目标
+     * @param salt 秘钥
+     * @return 结果
+     * @since 0.0.6
+     */
+    public static boolean isValid(final Object target, byte[] salt) {
+        return ChecksumBs.newInstance()
+                .target(target)
+                .salt(salt)
+                .isValid();
+    }
+
+    /**
+     * 是否合法
+     * @param target 目标
+     * @return 结果
+     * @since 0.0.6
+     */
+    public static boolean isValid(final Object target) {
+        return isValid(target, null);
+    }
+
 }

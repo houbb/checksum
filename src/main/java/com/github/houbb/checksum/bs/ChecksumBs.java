@@ -14,8 +14,12 @@ import com.github.houbb.hash.core.hash.Hashes;
 import com.github.houbb.heaven.constant.CharsetConst;
 import com.github.houbb.heaven.support.instance.impl.Instances;
 import com.github.houbb.heaven.util.common.ArgUtil;
+import com.github.houbb.heaven.util.lang.StringUtil;
+import com.github.houbb.heaven.util.lang.reflect.ReflectFieldUtil;
 import com.github.houbb.sort.api.ISort;
 import com.github.houbb.sort.core.api.Sorts;
+
+import java.lang.reflect.Field;
 
 /**
  * 验签引导类
@@ -177,6 +181,37 @@ public final class ChecksumBs {
         IChecksumContext context = buildContext();
 
         this.checkSum.fillCheckValue(context);
+    }
+
+    /**
+     * 验证签名是否通过
+     * @return 是否
+     * @since 0.0.6
+     */
+    public boolean isValid() {
+        if(target == null) {
+            return false;
+        }
+
+        Class<?> clazz = target.getClass();
+        //这里也可以添加缓存。
+        Field checksumField = checkValueCache.get(clazz);
+        if(checksumField == null) {
+            return false;
+        }
+
+        // 预期值
+        String expectCheckValue = this.checkValue();
+        if(expectCheckValue == null) {
+            return false;
+        }
+
+        // 实际值
+        Object value = ReflectFieldUtil.getValue(checksumField, target);
+        String actualValue = StringUtil.objectToString(value);
+
+        // 校验
+        return expectCheckValue.equals(actualValue);
     }
 
     /**

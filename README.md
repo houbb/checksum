@@ -49,7 +49,7 @@ maven 3.x+
 <plugin>
     <groupId>com.github.houbb</groupId>
     <artifactId>checksum</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
 </plugin>
 ```
 
@@ -86,6 +86,8 @@ public class User {
 
 ## 获取签名 
 
+所有的工具类方法见 `ChecksumHelper`，且下面的几个方法都支持指定秘钥。
+
 ```java
 User user = User.buildUser();
 
@@ -106,6 +108,55 @@ ChecksumHelper.fill(user);
 
 可以把对应的 checkValue 值默认填充到 `@CheckValue` 指定的字段上。
 
+## 验证签名
+
+```java
+User user = User.buildUser();
+
+boolean isValid = ChecksumHelper.isValid(user);
+```
+
+会对当前的 user 对象进行加签运算，并且将加签的结果和 user 本身的签名进行对比。
+
+# 引导类
+
+## ChecksumBs 引导类
+
+为了满足更加灵活的场景，我们引入了基于 fluent-api 的 ChecksumBs 引导类。
+
+上面的配置默认等价于：
+
+```java
+final String checksum = ChecksumBs
+        .newInstance()
+        .target(user)
+        .charset("UTF-8")
+        .checkSum(new DefaultChecksum())
+        .sort(Sorts.quick())
+        .hash(Hashes.md5())
+        .times(1)
+        .salt(null)
+        .checkFieldListCache(new CheckFieldListCache())
+        .checkValueCache(new CheckValueCache())
+        .checkValue();
+```
+
+## 配置说明
+
+上面所有的配置都是可以灵活替换的，所有的实现都支持用户自定义。
+
+| 属性 | 说明 |
+|:--|:--|
+| target | 待加签对象 |
+| charset | 编码 |
+| checkSum | 具体加签实现 |
+| sort | 字段排序策略 |
+| hash | 字符串加密 HASH 策略 |
+| salt | 加密对应的盐值 |
+| times | 加密的次数 |
+| checkFieldListCache | 待加签字段的缓存实现 |
+| checkValueCache | 签名字段的缓存实现 |
+
 # 性能
 
 ## 背景
@@ -125,6 +176,8 @@ ChecksumHelper.fill(user);
 手动处理耗时：2505ms
 
 注解处理耗时：2927ms
+
+
 
 # Road-MAP
 

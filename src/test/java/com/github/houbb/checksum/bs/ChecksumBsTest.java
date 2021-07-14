@@ -1,6 +1,11 @@
 package com.github.houbb.checksum.bs;
 
 import com.github.houbb.checksum.model.User;
+import com.github.houbb.checksum.support.cache.CheckFieldListCache;
+import com.github.houbb.checksum.support.cache.CheckValueCache;
+import com.github.houbb.checksum.support.checksum.DefaultChecksum;
+import com.github.houbb.hash.core.hash.Hashes;
+import com.github.houbb.sort.core.api.Sorts;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,9 +21,17 @@ public class ChecksumBsTest {
         final String checksum = ChecksumBs
                 .newInstance()
                 .target(user)
+                .charset("UTF-8")
+                .checkSum(new DefaultChecksum())
+                .sort(Sorts.quick())
+                .hash(Hashes.md5())
+                .times(1)
+                .salt(null)
+                .checkFieldListCache(new CheckFieldListCache())
+                .checkValueCache(new CheckValueCache())
                 .checkValue();
 
-        Assert.assertEquals(user.buildChecksum(), checksum);
+        Assert.assertEquals(user.buildCheckValue(), checksum);
         System.out.println(checksum);
     }
 

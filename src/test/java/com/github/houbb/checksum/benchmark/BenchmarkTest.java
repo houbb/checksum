@@ -52,7 +52,7 @@ public class BenchmarkTest {
      * @since 0.0.2
      */
     private void setCheckSum(User user) {
-        String checksum =  user.buildChecksum();
+        String checksum =  user.buildCheckValue();
         user.setChecksum(checksum);
     }
 

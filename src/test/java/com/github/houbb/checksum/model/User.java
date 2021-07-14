@@ -86,10 +86,11 @@ public class User {
      * @return 结果
      * @since 0.0.2
      */
-    public String buildChecksum() {
+    public String buildCheckValue() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(name);
         stringBuilder.append(password);
+        // 其他一堆属性
 
         return Md5Util.md5(stringBuilder.toString());
     }
